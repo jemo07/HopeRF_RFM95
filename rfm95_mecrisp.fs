@@ -1,14 +1,14 @@
 \ Register addresses
-$01 constant RegOpMode
-$06 constant RegFrMsb
-$07 constant RegFrMid
-$08 constant RegFrLsb
-$1D constant RegModemConfig1
-$1E constant RegModemConfig2
-$22 constant RegPayloadLength
-$0D constant RegFifoAddrPtr
-$0E constant RegFifoTxBaseAddr
-$0F constant RegFifoRxBaseAddr
+$01 variable RegOpMode
+$06 variable RegFrMsb
+$07 variable RegFrMid
+$08 variable RegFrLsb
+$1D variable RegModemConfig1
+$1E variable RegModemConfig2
+$22 variable RegPayloadLength
+$0D variable RegFifoAddrPtr
+$0E variable RegFifoTxBaseAddr
+$0F variable RegFifoRxBaseAddr
 $12 constant RegIrqFlags
 
 \ Operating mode values
@@ -32,32 +32,32 @@ $00 constant FifoAddrRxBase
 $40 constant IrqFlagRxDone
 
 : set-mode ( mode -- )  \ Set operating mode
-  RegOpMode c!
+  RegOpMode !
 ;
 
 : set-frequency ( freq -- ) \ Set frequency
-  RegFrMsb c!
-  RegFrMid c!
-  RegFrLsb c!
+  RegFrMsb !
+  RegFrMid !
+  RegFrLsb !
 ;
 
 : set-modem-config ( fsk-ook -- ) \ Set modem configuration
-  RegModemConfig1 c!
-  RegModemConfig2 c!
+  RegModemConfig1 !
+  RegModemConfig2 !
 ;
 
 : set-payload-length ( length -- ) \ Set payload length
-  RegPayloadLength c!
+  RegPayloadLength !
 ;
 
 : set-fifo-addr ( tx-base rx-base -- ) \ Set FIFO addresses
-  RegFifoTxBaseAddr c!
-  RegFifoRxBaseAddr c!
-  RegFifoAddrPtr c!
+  RegFifoTxBaseAddr !
+  RegFifoRxBaseAddr !
+  RegFifoAddrPtr !
 ;
 
 : check-rx-done ( -- flag ) \ Check if RX is done
-  RegIrqFlags c@
+  RegIrqFlags @
   IrqFlagRxDone and
 ;
 
